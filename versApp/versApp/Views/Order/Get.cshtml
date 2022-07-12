@@ -1,0 +1,90 @@
+﻿@model IEnumerable<versApp.Date.Models.Order>
+@{
+    ViewData["Title"] = "Get";
+}
+
+<!DOCTYPE html>
+<style>
+    table {
+        width: 90%;
+        border-collapse: collapse;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:100px;
+    }
+
+    thead {
+        background: #c4c1c1;
+        text-align: center;
+    }
+
+    tbody {
+        background: #fff;
+        text-align:center;
+    }
+    th, td {
+        padding: 5px;
+        border: 1px solid #333;
+    }
+
+    
+    #navbar {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border-bottom: 2px solid #000;
+        width: 100%;
+        text-align: left;
+        background-color: #ffffff;
+    }
+
+        #navbar a {
+            color: #000;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+        }
+
+            #navbar a:hover {
+                background-color: #F5F5F5;
+            }
+</style>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All orders</title>
+</head>
+<body>
+    <ul id="navbar">
+        @Html.ActionLink("Добавить новый заказ", "Create", "Order")
+        @Html.ActionLink("Просмотр всех заказов", "Get", "Order")
+    </ul>
+    
+
+    <form asp-controller="order" asp-action="get" method="get">
+
+        <table class="table">
+            <thead>
+                <tr><th>Город отправителя</th><th>Адрес отправителя</th><th>Город получателя</th><th>Адрес получателя</th><th>Вес груза(кг)</th><th>Дата забора груза</th></tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CitySender</td>
+                        <td>@item.AddressSender</td>
+                        <td>@item.CityRecipient</td>
+                        <td>@item.AddressRecipient</td>
+                        <td>@item.Weigth</td>
+                        <td>@item.Date</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
+</body>
+
+</html>

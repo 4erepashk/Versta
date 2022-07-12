@@ -1,0 +1,99 @@
+﻿
+@model versApp.Date.Models.Order
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<!DOCTYPE html>
+<style>
+    #navbar {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border-bottom: 2px solid #000;
+        width: 100%;
+        text-align: left;
+        background-color: #ffffff;
+    }
+
+        #navbar a {
+            color: #000;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            width: 100px;
+        }
+
+            #navbar a:hover {
+                background-color: #F5F5F5;
+            }
+
+    #btn {
+        border: 2px solid #000;
+        background: #fff;
+        width: 175px;
+        height: 35px;
+        font-family: 'Times New Roman';
+        font-weight: bold;
+    }
+
+        #btn:hover {
+            background: #F5F5F5;
+        }
+</style>
+
+
+
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title> Add new order</title>
+    </head>
+    <body>
+        <ul id="navbar">
+            @Html.ActionLink("Добавить новый заказ", "Create", "Order")
+            @Html.ActionLink("Просмотр всех заказов", "Get", "Order")
+        </ul>
+        <h2>Добавление заказа</h2>
+
+        <form method="post" asp-action="create" asp-controller="order">
+
+            <p>
+
+                <label asp-for="CitySender">Город отправителя</label><br />
+                @Html.EditorFor(model => model.CitySender, new { htmlAttributes = new { @class = "form-control", @data_val = "true", @required = "required" } });
+            </p>
+            <p>
+                <label asp-for="AddressSender">Адресс отправителя</label><br />
+                @Html.EditorFor(model => model.AddressSender, new { htmlAttributes = new { @class = "form-control", @data_val = "true", @required = "required" } });
+
+            </p>
+            <p>
+                <label asp-for="CityRecipient">Город получателяя</label><br />
+                @Html.EditorFor(model => model.CityRecipient, new { htmlAttributes = new { @class = "form-control", @data_val = "true", @required = "required" } });
+
+            </p>
+            <p>
+                <label asp-for="AddressRecipient">Адрес получателя</label><br />
+                @Html.EditorFor(model => model.AddressRecipient, new { htmlAttributes = new { @class = "form-control", @data_val = "true", @required = "required" } });
+
+            </p>
+            <p>
+                <label asp-for="Weigth">Вес груза</label><br />
+
+                @Html.EditorFor(model => model.Weigth, new { htmlAttributes = new { @id = "W", @type = "number", @min = "0", @step = "0.001", @value = "0", @class = "form-control", @data_val = "true", @required = "required" } });
+
+            </p>
+            <p>
+                <label asp-for="Date">Дата забора груза</label><br />
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @data_val = "true", @required = "required" } });
+
+            </p>
+            <p>
+                <input id="btn" type="submit" value="Отправить" />
+            </p>
+        </form>
+    </body>
+</html>
